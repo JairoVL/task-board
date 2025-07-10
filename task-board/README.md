@@ -40,3 +40,5 @@ ask-board/
 ```bash
 git clone https://github.com/JairoVL/task-board.git
 cd task-board
+npm install
+npm run dev 
