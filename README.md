@@ -1,44 +1,89 @@
-# Task Board - Gestión de Tareas Colaborativas
+#  Task Board - Gestión de Tareas Colaborativas
 
-Aplicación web tipo Trello/Notion para gestión colaborativa de tareas, desarrollada con React, TypeScript y SCSS modular.
+Aplicación web similar a Trello/Notion para gestión de tareas en equipo, desarrollada con **React**, **TypeScript** y **SCSS Modules**. Permite organizar tareas en columnas, moverlas mediante drag & drop y aplicar filtros por prioridad.
 
 ---
 
 ##  Tecnologías utilizadas
 
-- React (con `import React from 'react'`)
-- TypeScript (modo strict)
-- SCSS modular
-- Vite (bundler y dev server)
-- React Router Dom (ruteo)
-- react-beautiful-dnd (drag & drop)
-- LocalStorage para persistencia simulada
+| Tecnología             | Uso                                                                 |
+|------------------------|----------------------------------------------------------------------|
+| **React**              | Creación de componentes funcionales y dinámicos                      |
+| **TypeScript**         | Tipado estricto para mayor seguridad y escalabilidad                 |
+| **SCSS Modules**       | Estilos encapsulados por componente                                  |
+| **Vite**               | Empaquetado ultrarrápido y entorno de desarrollo                     |
+| **React Router DOM**   | Ruteo de páginas (Login / Dashboard)                                 |
+| **react-beautiful-dnd**| Interacción drag & drop entre columnas                               |
+| **LocalStorage**       | Simulación de persistencia sin backend                               |
 
 ---
 
-## 📁 Estructura del proyecto
+##  Estructura del Proyecto
 
-ask-board/
+task-board/
+├── public/ # Archivos públicos
 ├── src/
-│ ├── components/
-│ ├── hooks/
-│ ├── pages/
-│ ├── services/
-│ ├── styles/
-│ ├── types/
-│ ├── utils/
-│ └── main.tsx
+│ ├── components/ # Componentes reutilizables (UI)
+│ ├── context/ # Context API (manejo de estado global)
+│ ├── data/ # Datos iniciales (mockeados)
+│ ├── pages/ # Páginas principales (Login, Dashboard)
+│ ├── styles/ # Estilos globales y modulares
+│ ├── types/ # Tipos de datos TypeScript
+│ ├── utils/ # Funciones utilitarias (ID, etc.)
+│ └── main.tsx # Entry point principal
 ├── .gitignore
 ├── package.json
 ├── tsconfig.json
+├── vite.config.ts
 └── README.md
 
-## 🛠️ Instalación y ejecución local
 
-1. Clonar el repositorio
+
+---
+
+##  Instalación y ejecución local
+
+### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/JairoVL/task-board.git
 cd task-board
+
+
+#### 2. Instalar Dependencias
+``` bash
 npm install
-npm run dev 
+
+#### 3. Ejucutar en modo desarrollo
+
+npm run dev
+
+
+Funcionalidades-principales
+
+
+✅ Autenticación simulada (pantalla de login)
+
+✅ Creación y edición de tareas
+
+✅ Arrastrar y soltar entre columnas
+
+✅ Filtro de tareas por prioridad
+
+✅ Persistencia con LocalStorage
+
+ Pendientes-o-posibles-mejoras
+
+Autenticación real con backend
+
+Sincronización en tiempo real
+
+Diseño responsive
+
+Tests unitarios y de integración
+
+
+
+
+Autor
+Jairo Villalba

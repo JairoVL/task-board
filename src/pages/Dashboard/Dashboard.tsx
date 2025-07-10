@@ -103,7 +103,17 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
 
   return (
     <>
-      <div className={styles.headerRow}>
+    <div className={styles.header}>
+      <h1 className={styles.title}>Prueba Técnica Baleares</h1>
+      <h2 className={styles.subtitle}>Gestión de tareas</h2>
+
+      <div className={styles.controlsRow}>
+        {onLogout && (
+          <Button onClick={onLogout} variant="danger">
+            Cerrar sesión
+          </Button>
+        )}
+
         <div className={styles.filterContainer}>
           <label htmlFor="priority-filter" className={styles.filterLabel}>
             Filtrar por prioridad:
@@ -122,35 +132,30 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
             ]}
           />
         </div>
-
-        {onLogout && (
-          <Button onClick={onLogout} variant="danger">
-            Cerrar sesión
-          </Button>
-        )}
       </div>
+    </div>
 
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className={styles.dashboard}>
-          {Object.values(columns).map((column) => {
-            const filteredTasks = column.tasks.filter((task) =>
-              filterPriority === "all"
-                ? true
-                : task.priority === filterPriority
-            );
-            return (
-              <Column
-                key={column.id}
-                column={{ ...column, tasks: filteredTasks }}
-                addTask={addTask}
-                onEditTask={onEditTask}
-                onDeleteTask={onDeleteTask}
-              />
-            );
-          })}
-        </div>
-      </DragDropContext>
-    </>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className={styles.dashboard}>
+        {Object.values(columns).map((column) => {
+          const filteredTasks = column.tasks.filter((task) =>
+            filterPriority === "all"
+              ? true
+              : task.priority === filterPriority
+          );
+          return (
+            <Column
+              key={column.id}
+              column={{ ...column, tasks: filteredTasks }}
+              addTask={addTask}
+              onEditTask={onEditTask}
+              onDeleteTask={onDeleteTask}
+            />
+          );
+        })}
+      </div>
+    </DragDropContext>
+  </>
   );
 };
 
