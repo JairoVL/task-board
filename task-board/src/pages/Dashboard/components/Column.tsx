@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import TaskCard from "./TaskCard";
-import styles from "../styles/Dashboard.module.scss";
-import type { ColumnType } from "../types/board";
-import Modal from "./Modal"; // importar el modal
+import styles from "../Dashboard.module.scss";
+import type { ColumnType } from "../../../types/board";
+import Modal from "./Modal"; 
+
 
 type ColumnProps = {
   column: ColumnType;

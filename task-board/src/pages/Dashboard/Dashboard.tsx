@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/Dashboard.module.scss";
-import Column from "../components/Column";
+import styles from "./Dashboard.module.scss";
 import { DragDropContext } from "react-beautiful-dnd";
 import type { DropResult } from "react-beautiful-dnd";
-import type { ColumnsType, ColumnType, Priority, Task } from "../types/board";
-import { generateId } from "../utils/idGenerator";
+import type { ColumnsType, Priority, Task } from "../../types/board";
+import { generateId } from "../../utils/idGenerator";
+import Column from './components/Column';
+import Select from "../../components/UI/Select/Select";
+import Button from "../../components/UI/Button/Button";
+// import TaskCard from './components/TaskCard';
+// import Modal from './components/Modal';
+
 
 type DashboardProps = {
   onLogout: () => void;
@@ -121,28 +126,31 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
 
   return (
     <>
-      <div className={styles.filterContainer}>
-        <label htmlFor="priority-filter" className={styles.filterLabel}>
-          Filtrar por prioridad:
-        </label>
-        <select
-          id="priority-filter"
-          value={filterPriority}
-          onChange={(e) =>
-            setFilterPriority(e.target.value as "all" | Priority)
-          }
-          className={styles.filterSelect}
-        >
-          <option value="all">Todas</option>
-          <option value="low">Baja</option>
-          <option value="medium">Media</option>
-          <option value="high">Alta</option>
-        </select>
+      <div className={styles.headerRow}>
+        <div className={styles.filterContainer}>
+          <label htmlFor="priority-filter" className={styles.filterLabel}>
+            Filtrar por prioridad:
+          </label>
+          <Select
+            id="priority-filter"
+            value={filterPriority}
+            onChange={(e) =>
+              setFilterPriority(e.target.value as "all" | Priority)
+            }
+            options={[
+              { value: "all", label: "Todas" },
+              { value: "low", label: "Baja" },
+              { value: "medium", label: "Media" },
+              { value: "high", label: "Alta" },
+            ]}
+          />
+        </div>
 
-    
-        <button onClick={onLogout} className={styles.logoutButton}>
-          Cerrar sesión
-        </button>
+        {onLogout && (
+          <Button onClick={onLogout} variant="danger">
+            Cerrar sesión
+          </Button>
+        )}
       </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
@@ -156,7 +164,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
             return (
               <Column
                 key={column.id}
-                column={{ ...column, tasks: filteredTasks } as ColumnType}
+                column={{ ...column, tasks: filteredTasks }}
                 addTask={addTask}
                 onEditTask={onEditTask}
                 onDeleteTask={onDeleteTask}

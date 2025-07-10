@@ -1,7 +1,8 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
-import styles from "../styles/Dashboard.module.scss";
-import type { Task } from "../types/board";
+import styles from "../Dashboard.module.scss";
+import type { Task } from "../../../types/board";
+
 
 type TaskCardProps = {
   task: Task;
