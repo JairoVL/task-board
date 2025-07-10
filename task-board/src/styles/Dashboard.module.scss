@@ -36,3 +36,20 @@
   border-radius: 6px;
   transition: background-color 0.2s ease;
 }
+
+.addTaskButton {
+  margin-top: 12px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.addTaskButton:hover {
+  background-color: #1976d2;
+}

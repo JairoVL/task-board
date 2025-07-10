@@ -85,7 +85,15 @@ const Dashboard: React.FC = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={styles.dashboard}>
         {Object.values(columns).map((column) => (
-          <Column key={column.id} column={column as ColumnType} />
+          <Column
+  key={column.id}
+  column={column as ColumnType}
+  addTask={addTask}
+/>
+
+
+
+
         ))}
       </div>
     </DragDropContext>

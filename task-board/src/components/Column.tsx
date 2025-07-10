@@ -7,9 +7,12 @@ import type { ColumnType } from "../types/board";
 
 type ColumnProps = {
   column: ColumnType;
+  addTask: (columnId: string, title: string) => void;
 };
 
-const Column: React.FC<ColumnProps> = ({ column }) => {
+
+
+const Column: React.FC<ColumnProps> = ({ column, addTask }) => {
   return (
     <div className={styles.column}>
       <h3>{column.title}</h3>
@@ -27,6 +30,20 @@ const Column: React.FC<ColumnProps> = ({ column }) => {
     </div>
   )}
 </Droppable>
+<button
+  type="button"
+  onClick={() => {
+    const title = prompt("Título de la nueva tarea:");
+    if (title) {
+      addTask(column.id, title);
+    }
+  }}
+  className={styles.addTaskButton}
+>
+  + Agregar tarea
+</button>
+
+
 
     </div>
   );
