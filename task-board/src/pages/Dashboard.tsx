@@ -6,6 +6,10 @@ import type { DropResult } from "react-beautiful-dnd";
 import type { ColumnsType, ColumnType, Priority, Task } from "../types/board";
 import { generateId } from "../utils/idGenerator";
 
+type DashboardProps = {
+  onLogout: () => void;
+};
+
 const LOCAL_STORAGE_KEY = "task-board-columns";
 
 const initialData: { columns: ColumnsType } = {
@@ -31,15 +35,13 @@ const initialData: { columns: ColumnsType } = {
   },
 };
 
-const Dashboard: React.FC = () => {
+const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
   const [columns, setColumns] = useState<ColumnsType>(() => {
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
     return stored ? JSON.parse(stored) : initialData.columns;
   });
 
-  const [filterPriority, setFilterPriority] = useState<
-    "all" | Priority
-  >("all");
+  const [filterPriority, setFilterPriority] = useState<"all" | Priority>("all");
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(columns));
@@ -72,11 +74,10 @@ const Dashboard: React.FC = () => {
   };
 
   const addTask = (columnId: string, title: string) => {
-    // Defino newTask con tipado explícito para evitar error de prioridad
     const newTask: Task = {
       id: generateId(),
       title,
-      priority: "medium", // tipo Priority
+      priority: "medium",
     };
     setColumns({
       ...columns,
@@ -120,32 +121,37 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
-     <div className={styles.filterContainer}>
-  <label htmlFor="priority-filter" className={styles.filterLabel}>
-    Filtrar por prioridad:
-  </label>
-  <select
-    id="priority-filter"
-    value={filterPriority}
-    onChange={(e) =>
-      setFilterPriority(e.target.value as "all" | Priority)
-    }
-    className={styles.filterSelect}
-  >
-    <option value="all">Todas</option>
-    <option value="low">Baja</option>
-    <option value="medium">Media</option>
-    <option value="high">Alta</option>
-  </select>
-</div>
+      <div className={styles.filterContainer}>
+        <label htmlFor="priority-filter" className={styles.filterLabel}>
+          Filtrar por prioridad:
+        </label>
+        <select
+          id="priority-filter"
+          value={filterPriority}
+          onChange={(e) =>
+            setFilterPriority(e.target.value as "all" | Priority)
+          }
+          className={styles.filterSelect}
+        >
+          <option value="all">Todas</option>
+          <option value="low">Baja</option>
+          <option value="medium">Media</option>
+          <option value="high">Alta</option>
+        </select>
 
+    
+        <button onClick={onLogout} className={styles.logoutButton}>
+          Cerrar sesión
+        </button>
+      </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={styles.dashboard}>
           {Object.values(columns).map((column) => {
-            // Filtra las tareas según prioridad seleccionada
             const filteredTasks = column.tasks.filter((task) =>
-              filterPriority === "all" ? true : task.priority === filterPriority
+              filterPriority === "all"
+                ? true
+                : task.priority === filterPriority
             );
             return (
               <Column
