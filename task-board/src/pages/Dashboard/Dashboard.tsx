@@ -7,9 +7,7 @@ import { generateId } from "../../utils/idGenerator";
 import Column from './components/Column';
 import Select from "../../components/UI/Select/Select";
 import Button from "../../components/UI/Button/Button";
-// import TaskCard from './components/TaskCard';
-// import Modal from './components/Modal';
-
+import initialBoardData from "../../data/initialBoardData.json";
 
 type DashboardProps = {
   onLogout: () => void;
@@ -17,33 +15,10 @@ type DashboardProps = {
 
 const LOCAL_STORAGE_KEY = "task-board-columns";
 
-const initialData: { columns: ColumnsType } = {
-  columns: {
-    todo: {
-      id: "todo",
-      title: "Por hacer",
-      tasks: [
-        { id: "1", title: "Estudiar React", priority: "high" },
-        { id: "2", title: "Diseñar wireframe", priority: "medium" },
-      ],
-    },
-    "in-progress": {
-      id: "in-progress",
-      title: "En progreso",
-      tasks: [{ id: "3", title: "Maquetar dashboard", priority: "low" }],
-    },
-    done: {
-      id: "done",
-      title: "Completado",
-      tasks: [{ id: "4", title: "Crear repositorio", priority: "medium" }],
-    },
-  },
-};
-
 const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
   const [columns, setColumns] = useState<ColumnsType>(() => {
     const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : initialData.columns;
+    return stored ? JSON.parse(stored) : initialBoardData.columns;
   });
 
   const [filterPriority, setFilterPriority] = useState<"all" | Priority>("all");

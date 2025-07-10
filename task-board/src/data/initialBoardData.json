@@ -1,0 +1,26 @@
+{
+  "columns": {
+    "todo": {
+      "id": "todo",
+      "title": "Por hacer",
+      "tasks": [
+        { "id": "1", "title": "Estudiar React", "priority": "high" },
+        { "id": "2", "title": "Diseñar wireframe", "priority": "medium" }
+      ]
+    },
+    "in-progress": {
+      "id": "in-progress",
+      "title": "En progreso",
+      "tasks": [
+        { "id": "3", "title": "Maquetar dashboard", "priority": "low" }
+      ]
+    },
+    "done": {
+      "id": "done",
+      "title": "Completado",
+      "tasks": [
+        { "id": "4", "title": "Crear repositorio", "priority": "medium" }
+      ]
+    }
+  }
+}
