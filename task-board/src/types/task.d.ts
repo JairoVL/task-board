@@ -1,12 +1,11 @@
-export type Task = {
+type Task = { id: string; title: string };
+
+type Column = {
   id: string;
   title: string;
-  description?: string;
-  priority: 'low' | 'medium' | 'high';
+  tasks: Task[];
 };
 
-export type Column = {
-  id: string;
-  title: string;
-  taskIds: string[];
+type Columns = {
+  [key: string]: Column;
 };
