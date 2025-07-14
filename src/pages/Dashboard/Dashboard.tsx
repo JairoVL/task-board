@@ -8,7 +8,7 @@ import Column from './components/Column';
 import Select from "../../components/UI/Select/Select";
 import Button from "../../components/UI/Button/Button";
 import initialBoardData from "../../data/initialBoardData.json";
-import { useBoard } from '../../context/BoardContext';
+// import { useBoard } from '../../context/BoardContext';
 
 
 type DashboardProps = {

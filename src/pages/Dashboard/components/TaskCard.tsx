@@ -3,6 +3,7 @@ import { Draggable } from "react-beautiful-dnd";
 import styles from "../Dashboard.module.scss";
 import type { Task } from "../../../types/board";
 import Card from "../../../components/UI/Card/Card";
+import { FiEdit, FiTrash } from "react-icons/fi";
 
 type TaskCardProps = {
   task: Task;
@@ -32,7 +33,8 @@ const TaskCard: React.FC<TaskCardProps> = ({
               <div className={styles.taskHeader}>
                 <span>{task.title}</span>
                 <hr />
-                <span className={`${styles.priority} ${styles[task.priority]}`}> <><i>prioridad</i> </>
+                <span className={`${styles.priority} ${styles[task.priority]}`}>
+                  <i>prioridad</i>{" "}
                   {task.priority === "low"
                     ? "🔵 Baja"
                     : task.priority === "medium"
@@ -42,8 +44,12 @@ const TaskCard: React.FC<TaskCardProps> = ({
               </div>
 
               <div className={styles.taskActions}>
-                <button onClick={() => onEdit(columnId, task.id)}>✏️</button>
-                <button onClick={() => onDelete(columnId, task.id)}>🗑️</button>
+                <button onClick={() => onEdit(columnId, task.id)} aria-label="Editar tarea">
+                  <FiEdit size={18} />
+                </button>
+                <button onClick={() => onDelete(columnId, task.id)} aria-label="Eliminar tarea">
+                  <FiTrash size={18} />
+                </button>
               </div>
             </div>
           </Card>

@@ -25,26 +25,37 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>Iniciar sesión</h2>
+  <div className={styles.container}>
+    <h2 className={styles.title}>Iniciar sesión</h2>
 
+    <form className={styles.form} onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+      <label htmlFor="username" className={styles.label}>Usuario</label>
       <Input
+        id="username"
         type="text"
         placeholder="Usuario"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        className={styles.input}
       />
 
+      <label htmlFor="password" className={styles.label}>Contraseña</label>
       <Input
+        id="password"
         type="password"
         placeholder="Contraseña"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        className={styles.input}
       />
 
-      <Button onClick={handleLogin} variant="primary">Entrar</Button>
-    </div>
-  );
+      <Button type="submit" variant="primary" className={styles.button}>
+        Entrar
+      </Button>
+    </form>
+  </div>
+);
 };
+
 
 export default Login;
