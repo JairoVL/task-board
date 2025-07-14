@@ -8,6 +8,8 @@ import Column from './components/Column';
 import Select from "../../components/UI/Select/Select";
 import Button from "../../components/UI/Button/Button";
 import initialBoardData from "../../data/initialBoardData.json";
+import '../../styles/variables.scss';
+
 // import { useBoard } from '../../context/BoardContext';
 
 
